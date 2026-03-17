@@ -1,15 +1,33 @@
 import React, { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 
-const useMedia = (queries: string[], values: number[], defaultValue: number): number => {
-  const get = () => values[queries.findIndex(q => matchMedia(q).matches)] ?? defaultValue;
+const useMedia = (
+  queries: string[],
+  values: number[],
+  defaultValue: number
+): number => {
+  const get = () => {
+    // ✅ SSR SAFE CHECK
+    if (typeof window === "undefined") return defaultValue;
 
-  const [value, setValue] = useState<number>(get);
+    const index = queries.findIndex(q => window.matchMedia(q).matches);
+    return values[index] ?? defaultValue;
+  };
+
+  const [value, setValue] = useState<number>(defaultValue);
 
   useEffect(() => {
-    const handler = () => setValue(get);
-    queries.forEach(q => matchMedia(q).addEventListener('change', handler));
-    return () => queries.forEach(q => matchMedia(q).removeEventListener('change', handler));
+    const handler = () => setValue(get());
+
+    // run once after mount
+    handler();
+
+    const mediaQueries = queries.map(q => window.matchMedia(q));
+    mediaQueries.forEach(mq => mq.addEventListener("change", handler));
+
+    return () => {
+      mediaQueries.forEach(mq => mq.removeEventListener("change", handler));
+    };
   }, [queries]);
 
   return value;

@@ -161,20 +161,22 @@ Annual billing <span className="text-gray-500">(Save 20%)</span>
 
             <div className="flex justify-center items-center mt-6 gap-2">
 
-              <span className="text-6xl font-bold text-white flex items-center">
+              <span className="text-6xl font-bold text-white flex items-center gap-1">
 
-                $
+  ₹
 
-                <NumberFlow
-                  value={
-                    isMonthly
-                      ? Number(plan.price)
-                      : Number(plan.yearlyPrice)
-                  }
-                />
+  <NumberFlow
+    value={
+      isMonthly
+        ? Number(plan.price)
+        : Number(plan.yearlyPrice)
+    }
+    format={{
+      useGrouping: true, // 🔥 adds commas (1,999)
+    }}
+  />
 
-              </span>
-
+</span>
               <span className="text-gray-400 text-sm">
                 / {plan.period}
               </span>

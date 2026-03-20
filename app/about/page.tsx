@@ -5,6 +5,9 @@ import AboutUs from "@/components/sections/about-us"
 import TrainersSection from "@/components/sections/TrainersSection"
 import AboutStats from "@/components/sections/AboutStats"
 import TopStrip from "@/components/sections/TopStrip"
+import { EquipmentGrid } from "@/components/ui/equipment-grid"
+import MissionSection from "@/components/sections/mission-section"
+import GymForm from "@/components/sections/GymForm"
 
 export default function AboutPage(){
 
@@ -18,6 +21,10 @@ return(
 <AboutUs/>
 <TrainersSection/>
 <AboutStats/>
+<MissionSection/>
+<EquipmentGrid/>
+<GymForm/>
+
 
 <Footer/>
 

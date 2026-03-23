@@ -39,9 +39,10 @@ export default function Navbar() {
 
   return (
     <header
-      className={`fixed left-0 w-full h-16 text-white z-50 transition-all duration-500
-      ${scrolled ? "top-0 bg-black/95 backdrop-blur-md shadow-lg" : "top-[40px] bg-black"}`}
-    >
+  className={`fixed left-0 w-full h-16 text-white z-50 transition-all duration-500
+${scrolled ? "top-0" : "top-0 md:top-[40px]"}
+${scrolled ? "bg-black/95 backdrop-blur-md shadow-lg" : "bg-black"}`}
+>
       <div className="max-w-7xl mx-auto h-full flex items-center justify-between px-6">
 
         {/* LOGO */}

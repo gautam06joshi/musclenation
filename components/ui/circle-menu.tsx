@@ -235,7 +235,7 @@ const MenuTrigger = ({
 
 const CircleMenu = ({
   items,
-  openIcon = <Menu size={18} className="text-background" />,
+  openIcon = <Menu size={18} className=" color: black;" />,
   closeIcon = <X size={18} className="text-background" />,
   forceOpen = false,
   onClose

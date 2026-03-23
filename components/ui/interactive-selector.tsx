@@ -143,10 +143,25 @@ const InteractiveSelector = () => {
         </p>
 
       </div>
+      {/* Mobile Scroll Hint */}
+
+<div className="md:hidden relative w-full flex justify-center mb-6">
+
+  <div className="flex items-center gap-2 text-gray-400 text-sm animate-pulse">
+    <span>Swipe</span>
+
+    <div className="w-6 h-[1px] bg-gray-500 relative overflow-hidden">
+      <div className="absolute left-0 top-0 h-full w-2 bg-white animate-[slide_1s_infinite]" />
+    </div>
+
+    <span>→</span>
+  </div>
+
+</div>
 
       {/* OPTIONS */}
 
-      <div className="flex w-full max-w-[1400px] h-[420px] overflow-hidden">
+      <div className="flex w-full max-w-[1400px] h-[420px] overflow-x-auto md:overflow-hidden overflow-y-hidden">
 
         {options.map((option,index)=> (
 

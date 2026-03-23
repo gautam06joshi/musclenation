@@ -11,24 +11,36 @@ export default function MobileMenu() {
   const [menuOpen, setMenuOpen] = useState(false)
 
   const openMenu = () => {
+  const scrollY = window.scrollY
 
-    setOverlayOpen(true)
+  document.body.style.position = "fixed"
+  document.body.style.top = `-${scrollY}px`
+  document.body.style.left = "0"
+  document.body.style.right = "0"
 
-    setTimeout(() => {
-      setMenuOpen(true)
-    }, 200)
+  setOverlayOpen(true)
 
-  }
+  setTimeout(() => {
+    setMenuOpen(true)
+  }, 200)
+}
 
   const closeMenu = () => {
+  const scrollY = document.body.style.top
 
-    setMenuOpen(false)
+  setMenuOpen(false)
 
-    setTimeout(() => {
-      setOverlayOpen(false)
-    }, 1200)
+  setTimeout(() => {
+    setOverlayOpen(false)
 
-  }
+    document.body.style.position = ""
+    document.body.style.top = ""
+    document.body.style.left = ""
+    document.body.style.right = ""
+
+    window.scrollTo(0, parseInt(scrollY || "0") * -1)
+  }, 1200)
+}
 
   return (
     <>
@@ -36,7 +48,7 @@ export default function MobileMenu() {
       {!overlayOpen && (
         <button
           onClick={openMenu}
-          className="fixed top-6 right-6 z-[100] bg-black text-white p-3 rounded-full"
+          className="fixed top-2 right-6 z-[100] bg-black text-white p-3 rounded-full"
         >
           <Menu size={20}/>
         </button>
@@ -47,11 +59,11 @@ export default function MobileMenu() {
         {overlayOpen && (
 
           <motion.div
-            initial={{ y: "-100%" }}
-            animate={{ y: 0 }}
-            exit={{ y: "-100%" }}
+            initial={{ y: "-100vh" }}
+animate={{ y: 0 }}
+exit={{ y: "-100vh" }}
             transition={{ duration: 0.6, ease: "easeInOut" }}
-            className="fixed inset-0 bg-black z-[90] flex items-center justify-center"
+            className="fixed inset-0 bg-black z-[999] flex items-center justify-center"
           >
 
             <CircleMenu

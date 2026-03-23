@@ -237,7 +237,7 @@ const StickyScroll = forwardRef<HTMLElement>((props, ref) => {
 
         <footer className="bg-slate-950">
 
-          <h1 className="text-[16vw] translate-y-20 leading-[100%] uppercase font-semibold text-center bg-gradient-to-r from-gray-400 to-gray-800 bg-clip-text text-transparent">
+          <h1 className="text-[16vw] translate-y-8 md:translate-y-20  leading-[100%] uppercase font-semibold text-center bg-gradient-to-r from-gray-400 to-gray-800 bg-clip-text text-transparent">
             Muscle Nation
           </h1>
 

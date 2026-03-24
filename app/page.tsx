@@ -10,6 +10,7 @@ import WhyChooseUs from "@/components/sections/why-choose-us"
 import ScrollVelocity from "@/components/ui/ScrollVelocity"
 import GymForm from "@/components/sections/GymForm"
 import TopStrip from "@/components/sections/TopStrip"
+import { Feature } from "@/components/ui/before-after-comparison"
 
 export default function Home(){
 
@@ -27,6 +28,8 @@ return(
 <Services/>
 
 <WhyChooseUs/>
+
+<Feature/>
 
 <PricingSection/>
 

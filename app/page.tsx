@@ -17,9 +17,6 @@ export default function Home(){
 return(
 
 <main>
-    <TopStrip/>
-
-<Navbar/>
 
 <Hero/>
 
@@ -41,7 +38,6 @@ return(
   className="custom-scroll-text"
 />
 <GymForm/>
-<Footer/>
 
 </main>
 

@@ -20,8 +20,8 @@ const STYLES: Record<string, Record<string, string>> = {
   },
   item: {
     container:
-      'rounded-full flex items-center justify-center absolute bg-muted hover:bg-muted/50 cursor-pointer',
-    label: 'text-xs text-foreground absolute top-full left-1/2 -translate-x-1/2 mt-1'
+      'rounded-full flex items-center justify-center absolute bg-black hover:bg-zinc-900 text-white border border-zinc-800 cursor-pointer',
+       
   }
 };
 
@@ -235,7 +235,7 @@ const MenuTrigger = ({
 
 const CircleMenu = ({
   items,
-  openIcon = <Menu size={18} className=" color: black;" />,
+  openIcon = <Menu size={18} className="text-background" />,
   closeIcon = <X size={18} className="text-background" />,
   forceOpen = false,
   onClose

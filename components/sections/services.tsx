@@ -53,26 +53,26 @@ export default function Services() {
           <div className="flex flex-col space-y-8">
             {SERVICES.map((service, index) => (
               <TextStaggerHover
-                key={service.id}
-                index={index}
-                text={service.title}
-                desc={service.desc}
-                className="text-5xl font-semibold uppercase tracking-tight"
-              />
+  key={service.id}
+  index={index}
+  text={service.title}
+  desc={service.desc}
+  imageUrl={service.imageUrl} 
+/>
             ))}
           </div>
 
           {/* RIGHT IMAGE */}
-          <HoverSliderImageWrap className="relative w-[420px] h-[420px] rounded-xl overflow-hidden">
-            {SERVICES.map((service, index) => (
-              <HoverSliderImage
-                key={service.id}
-                index={index}
-                src={service.imageUrl}
-                alt={service.title}
-              />
-            ))}
-          </HoverSliderImageWrap>
+          <HoverSliderImageWrap className="hidden md:grid relative w-[420px] h-[420px] rounded-xl overflow-hidden">
+  {SERVICES.map((service, index) => (
+    <HoverSliderImage
+      key={service.id}
+      index={index}
+      src={service.imageUrl}
+      alt={service.title}
+    />
+  ))}
+</HoverSliderImageWrap>
         </div>
       </HoverSlider>
     </section>

@@ -4,6 +4,13 @@ import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Menu, Home, User, Mail, Briefcase, Book } from "lucide-react"
 import { CircleMenu } from "@/components/ui/circle-menu"
+import {
+  Info,
+  Dumbbell,
+  Image,
+  CreditCard,
+  Users,
+} from "lucide-react"
 
 export default function MobileMenu() {
 
@@ -70,13 +77,13 @@ exit={{ y: "-100vh" }}
               forceOpen={menuOpen}
               onClose={closeMenu}
               items={[
-                { label: "Home", icon: <Home size={18}/>, href: "/" },
-                { label: "Projects", icon: <Briefcase size={18}/>, href: "/projects" },
-                { label: "Articles", icon: <Book size={18}/>, href: "/blog" },
-                { label: "About", icon: <User size={18}/>, href: "/about" },
-                { label: "Contact", icon: <Mail size={18}/>, href: "/contact" }
-              ]}
-            />
+  { label: "Home", icon: <Home size={18} />, href: "/" },
+  { label: "About", icon: <Info size={18} />, href: "/about" },
+  { label: "Programs", icon: <Dumbbell size={18} />, href: "/programs" },
+  { label: "Gallery", icon: <Image size={18} />, href: "/gallery" },
+  { label: "Membership", icon: <CreditCard size={18} />, href: "/membership" },
+  { label: "Account", icon: <Users size={18} />, href: "/account" },
+]}       />
 
           </motion.div>
 

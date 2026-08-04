@@ -14,8 +14,6 @@ export default function AboutPage(){
 return(
 
 <main className="bg-black text-white">
-<TopStrip/>
-<Navbar/>
 
 <AboutHero/>
 <AboutUs/>
@@ -26,7 +24,6 @@ return(
 <GymForm/>
 
 
-<Footer/>
 
 </main>
 

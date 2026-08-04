@@ -85,16 +85,20 @@ export const TextHoverEffect = ({
       </text>
 
       <motion.text
-        x="50%"
-        y="50%"
-        textAnchor="middle"
-        dominantBaseline="middle"
-        strokeWidth="1"
-        className="fill-transparent stroke-[#3ca2fa] text-[clamp(3rem,8vw,7rem)] font-bold"
-        initial={{ strokeDashoffset: 1000, strokeDasharray: 1000 }}
-        animate={{ strokeDashoffset: 0, strokeDasharray: 1000 }}
-        transition={{ duration: 4, ease: "easeInOut" }}
-      >
+  x="50%"
+  y="50%"
+  textAnchor="middle"
+  dominantBaseline="middle"
+  strokeWidth="1"
+  className="fill-transparent stroke-[#3ca2fa] text-[clamp(3rem,8vw,7rem)] font-bold"
+  initial={{ strokeDashoffset: 1000, strokeDasharray: 1000 }}
+  whileInView={{ strokeDashoffset: 0 }}
+  viewport={{
+    once: true,
+    amount: 0.5,
+  }}
+  transition={{ duration: 4, ease: "easeInOut" }}
+>
         {text}
       </motion.text>
 

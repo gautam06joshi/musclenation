@@ -32,7 +32,7 @@ export default function Navbar() {
 
     { title: "Gallery", icon: Image, href: "/gallery" },
     { title: "Membership", icon: CreditCard, href: "/membership" },
-    { title: "Trainers", icon: Users, href: "/trainers" },
+    { title: "Account", icon: Users, href: "/account" },
   ]
 
   const activeIndex = tabs.findIndex((tab: any) => tab.href === pathname)

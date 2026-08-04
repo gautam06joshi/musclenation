@@ -60,7 +60,7 @@ function Footer() {
   ];
 
   return (
-    <footer className="bg-black relative rounded-3xl overflow-hidden mt-24">
+    <footer className="bg-black relative rounded-3xl overflow-hidden mt-0.5">
 
       <div className="max-w-7xl mx-auto px-10 py-20 relative z-40">
 

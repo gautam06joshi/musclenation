@@ -10,6 +10,7 @@ interface TextStaggerHoverProps {
   text: string
   index: number
   desc?: string
+  imageUrl?: string
 }
 
 interface HoverSliderImageProps {
@@ -54,8 +55,14 @@ export const HoverSlider = React.forwardRef<
   HTMLElement,
   React.HTMLAttributes<HTMLElement> & HoverSliderProps
 >(({ children, className }, ref) => {
-  const [activeSlide, setActiveSlide] = React.useState(0)
-  const [expandedSlide, setExpandedSlide] = React.useState<number | null>(null)
+ const [activeSlide, setActiveSlide] = React.useState(0)
+
+const [expandedSlide, setExpandedSlide] = React.useState<number | null>(() => {
+  if (typeof window !== "undefined" && window.innerWidth < 768) {
+    return 0; // First service expanded on mobile
+  }
+  return null;
+})
 
   const changeSlide = (index: number) => setActiveSlide(index)
 
@@ -77,8 +84,8 @@ HoverSlider.displayName = "HoverSlider"
 
 export const TextStaggerHover = React.forwardRef<
   HTMLElement,
-  React.HTMLAttributes<HTMLElement> & TextStaggerHoverProps
->(({ text, index, desc, className }, ref) => {
+  TextStaggerHoverProps & React.HTMLAttributes<HTMLElement>
+>(({ text, index, desc, imageUrl, className }, ref) => {
   const { activeSlide, changeSlide, expandedSlide, toggleExpand } =
     useHoverSliderContext()
 
@@ -86,6 +93,14 @@ export const TextStaggerHover = React.forwardRef<
 
   const isActive = activeSlide === index
   const isExpanded = expandedSlide === index
+  const [isMobile, setIsMobile] = React.useState(false);
+
+React.useEffect(() => {
+  const check = () => setIsMobile(window.innerWidth < 768);
+  check();
+  window.addEventListener("resize", check);
+  return () => window.removeEventListener("resize", check);
+}, []);
 
   return (
     <div
@@ -95,11 +110,12 @@ export const TextStaggerHover = React.forwardRef<
     >
       {/* TEXT */}
       <span
-        ref={ref}
-        className={cn(
-          "relative inline-block overflow-hidden",
-          className
-        )}
+  ref={ref}
+  className={cn(
+    "relative inline-block overflow-hidden text-3xl md:text-3xl lg:text-5xl font-bold uppercase",
+    className
+  )}
+
       >
         {characters.map((char, i) => (
           <span key={`${char}-${i}`} className="relative inline-block overflow-hidden">
@@ -130,22 +146,31 @@ export const TextStaggerHover = React.forwardRef<
 
       {/* EXPAND SECTION */}
       <motion.div
-        initial={false}
-        animate={{
-          height: isExpanded ? "auto" : 0,
-          opacity: isExpanded ? 1 : 0,
-        }}
-        transition={{ duration: 0.4, ease: "easeInOut" }}
-        className="overflow-hidden"
-      >
-        <div className="mt-4 p-4 rounded-xl backdrop-blur-md bg-white/5 border border-white/10 max-w-md text-gray-400 text-sm leading-relaxed">
-          {desc}
-        </div>
+  initial={false}
+  animate={{
+    height: isExpanded ? "auto" : 0,
+    opacity: isExpanded ? 1 : 0,
+  }}
+  transition={{ duration: 0.4, ease: "easeInOut" }}
+  className="overflow-hidden"
+>
+  <div className="mt-4 p-4 rounded-xl backdrop-blur-md bg-white/5 border border-white/10 max-w-md text-gray-400 text-sm leading-relaxed">
+    {desc}
 
-        <button className="mt-4 px-6 py-2 border border-white rounded-full text-sm hover:bg-white hover:text-black transition-all duration-300">
-          Explore Service →
-        </button>
-      </motion.div>
+    {/* ✅ MOBILE IMAGE */}
+    {isMobile && imageUrl && (
+      <img
+        src={imageUrl}
+        alt={text}
+        className="mt-4 w-full h-48 object-cover rounded-lg"
+      />
+    )}
+  </div>
+
+  <button className="mt-4 px-6 py-2 border border-white rounded-full text-sm hover:bg-white hover:text-black transition-all duration-300">
+    Explore Service →
+  </button>
+</motion.div>
     </div>
   )
 })

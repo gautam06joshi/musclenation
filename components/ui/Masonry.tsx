@@ -81,7 +81,8 @@ interface GridItem extends Item {
 }
 
 interface MasonryProps {
-  items: Item[];
+  items: Item[]
+  onItemClick?: (item: Item) => void;
   ease?: string;
   duration?: number;
   stagger?: number;
@@ -92,8 +93,11 @@ interface MasonryProps {
   colorShiftOnHover?: boolean;
 }
 
+
+
 const Masonry: React.FC<MasonryProps> = ({
   items,
+  onItemClick, // <-- add this
   ease = 'power3.out',
   duration = 0.6,
   stagger = 0.05,
@@ -278,7 +282,7 @@ const Masonry: React.FC<MasonryProps> = ({
           data-key={item.id}
           className="absolute box-content"
           style={{ willChange: 'transform, width, height, opacity' }}
-          onClick={() => window.open(item.url, '_blank', 'noopener')}
+          onClick={() => onItemClick?.(item)}
           onMouseEnter={e => handleMouseEnter(item.id, e.currentTarget)}
           onMouseLeave={e => handleMouseLeave(item.id, e.currentTarget)}
         >

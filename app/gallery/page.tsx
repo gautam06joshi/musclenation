@@ -12,7 +12,7 @@ return(
     <Navbar/>
 
 <GalleryHero/>
-<Footer/>
+
 
 </main>
 
